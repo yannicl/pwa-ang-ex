@@ -1,0 +1,9 @@
+<mat-list>
+    <div *ngFor="let task of tasks">
+        <mat-list-item>
+            <mat-icon mat-list-icon>task_alt</mat-icon>
+            <app-task [task]="task"></app-task>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </div>
+</mat-list>

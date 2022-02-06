@@ -14,10 +14,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskComponent } from './components/task/task.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TaskComponent,
+    TaskListComponent
   ],
   imports: [
     BrowserModule,
