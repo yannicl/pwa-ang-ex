@@ -1,0 +1,6 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isInitialProgressBarDisplayed"></mat-progress-bar>
+<mat-progress-bar mode="buffer" *ngIf="isUpdateProgressBarDisplayed"></mat-progress-bar>
+<mat-progress-bar mode="determinate" *ngIf="isCounterProgressBarDisplayed" [value]="tickCounterUpdateZones / 2"></mat-progress-bar>
+<mat-list>
+    <mat-list-item *ngFor="let zone of zones"><mat-icon aria-hidden="false" [color]="convZoneStatus2Color(zone.status)">{{convZoneStatus2Icon(zone.status)}}</mat-icon> {{zone.label}}</mat-list-item>
+</mat-list>
