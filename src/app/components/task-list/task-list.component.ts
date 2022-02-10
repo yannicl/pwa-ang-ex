@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TASKS } from 'src/app/mock-tasks';
 import { Task } from '../../models/task';
+import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,11 +9,19 @@ import { Task } from '../../models/task';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: Task[] = TASKS;
+  tasks: Task[] = [];
 
-  constructor() { }
+  constructor(private taskService: TasksService) { }
 
   ngOnInit(): void {
+    this.tasks = this.taskService.getTasks();
   }
+ 
+
+  removeTask(task: Task) {
+    console.log("supprimer tâche");
+    this.taskService.removeTask(task);
+  }
+
 
 }
