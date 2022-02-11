@@ -1,0 +1,20 @@
+<h2>Nouvelle tâche :</h2>
+<form (ngSubmit)="onSubmit()">
+    <p>
+        <mat-form-field appearance="legacy" class="full-width">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" [(ngModel)]="text" name="text">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </p>
+    <p>
+        <button mat-raised-button color="primary" type="submit">Sauvegarder</button>
+    </p>
+</form>
