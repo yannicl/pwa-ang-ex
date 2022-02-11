@@ -18,13 +18,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { AddButtonComponent } from './components/add-button/add-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
     TaskListComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    AddButtonComponent
   ],
   imports: [
     BrowserModule,

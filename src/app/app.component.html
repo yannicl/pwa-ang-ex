@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
   <span>Mes tâches</span>
 </mat-toolbar>
-<app-task-form></app-task-form>
+<app-task-form *ngIf="isNewTaskFormDisplayed" (userActvityCompleted)="isNewTaskFormDisplayed = false"></app-task-form>
 <app-task-list></app-task-list>
+<app-add-button (btnAddClick)="isNewTaskFormDisplayed = true"></app-add-button>

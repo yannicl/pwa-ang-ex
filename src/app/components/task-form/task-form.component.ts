@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Task } from '../../models/task';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -11,6 +10,8 @@ export class TaskFormComponent implements OnInit {
   text: string = "";
   date: string = "";
 
+  @Output() userActvityCompleted = new EventEmitter();
+
   constructor(private taskService: TasksService) { }
 
   ngOnInit(): void {
@@ -21,5 +22,12 @@ export class TaskFormComponent implements OnInit {
     this.text = "";
     this.date = "";
   }
+
+  onCancel() : void {
+    this.text = "";
+    this.date = "";
+    this.userActvityCompleted.emit();
+  }
+ 
 
 }
