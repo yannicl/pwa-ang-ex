@@ -3,6 +3,8 @@
 </mat-toolbar>
 <nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabPanel">
   <a mat-tab-link *ngFor="let tab of tabs"
-     [routerLink]="tab.link" > {{tab.label}} </a>
-</nav>
-<mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>
+     routerLinkActive
+     #rla="routerLinkActive"
+     [active]="rla.isActive" [routerLink]="tab.link" [queryParams]="{name: 'to You'}"> {{tab.label}} </a>
+ </nav>
+ <mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>
