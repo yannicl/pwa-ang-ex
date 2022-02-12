@@ -9,7 +9,7 @@ import { Observable, delay } from 'rxjs';
 })
 export class ApiAlarmClientService {
 
-  apiUrl: string = 'https://us-central1-portegarage.cloudfunctions.net/alarm-status-mock';
+  readonly apiUrl: string = 'https://us-central1-portegarage.cloudfunctions.net/alarm-status-mock';
 
   constructor(private http: HttpClient) { }
 
