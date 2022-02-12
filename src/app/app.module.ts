@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +29,7 @@ import { BComponent } from './components/b/b.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatTabsModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,

@@ -1,11 +1,8 @@
 <mat-toolbar color="primary">
   <span>Mes tâches</span>
 </mat-toolbar>
-<h1>Angular Router App</h1>
-<nav>
-  <ul>
-    <li><a routerLink="/a">A Component</a></li>
-    <li><a routerLink="/b">B Component</a></li>
-  </ul>
+<nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabPanel">
+  <a mat-tab-link *ngFor="let tab of tabs"
+     [routerLink]="tab.link" > {{tab.label}} </a>
 </nav>
-<router-outlet></router-outlet>
+<mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>
