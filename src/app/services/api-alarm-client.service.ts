@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlarmStatus } from '../models/AlarmStatus';
-import { Observable, delay } from 'rxjs';
+import { Observable, timer, switchMap } from 'rxjs';
 
 
 @Injectable({
@@ -14,6 +14,6 @@ export class ApiAlarmClientService {
   constructor(private http: HttpClient) { }
 
   getAlarmStatus(): Observable<AlarmStatus> {
-    return this.http.get<AlarmStatus>(this.apiUrl).pipe(delay(3000));
+    return timer(1, 10000).pipe(switchMap(() => this.http.get<AlarmStatus>(this.apiUrl)));
   }
 }

@@ -11,20 +11,15 @@ import { Subscription, interval } from 'rxjs';
 export class ZonesComponent implements OnInit {
 
   isInitialProgressBarDisplayed: boolean = true;
-  isUpdateProgressBarDisplayed: boolean = false;
-  isCounterProgressBarDisplayed: boolean = false;
   zones: Zone[] = [];
   updateZonesSubscription!: Subscription;
-  tickCounterUpdateZones: number = 0;
 
   constructor(private apiAlarmClientService: ApiAlarmClientService) { }
 
   ngOnInit(): void {
-    this.apiAlarmClientService.getAlarmStatus().subscribe(alarmStatus => {
+    this.updateZonesSubscription = this.apiAlarmClientService.getAlarmStatus().subscribe(alarmStatus => {
       this.isInitialProgressBarDisplayed = false;
       this.zones = alarmStatus.zones;
-      this.updateZonesSubscription = interval(100).subscribe(() => this.tickUpdateZones());
-      this.isCounterProgressBarDisplayed = true;
     })
   }
 
@@ -32,24 +27,6 @@ export class ZonesComponent implements OnInit {
     if (this.updateZonesSubscription != null) {
       this.updateZonesSubscription.unsubscribe()
     }
-  }
-
-  tickUpdateZones() {
-    this.tickCounterUpdateZones++;
-    if (this.tickCounterUpdateZones >= 200) {
-      this.tickCounterUpdateZones = 0;
-      this.updateZones();
-    }
-  }
-
-  updateZones(): void {
-    this.isUpdateProgressBarDisplayed = true;
-    this.isCounterProgressBarDisplayed = false;
-    this.apiAlarmClientService.getAlarmStatus().subscribe(alarmStatus => {
-      this.isUpdateProgressBarDisplayed = false;
-      this.isCounterProgressBarDisplayed = true;
-      this.zones = alarmStatus.zones;
-    })
   }
 
   convZoneStatus2Icon(status: string) {
