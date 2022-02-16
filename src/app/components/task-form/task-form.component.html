@@ -1,7 +1,7 @@
 <h2>Nouvelle tâche :</h2>
 <form (ngSubmit)="onSubmit()">
     <p>
-        <mat-form-field appearance="legacy" class="full-width">
+        <mat-form-field appearance="legacy" [ngClass]="classForDescription">
             <mat-label>Description</mat-label>
             <input matInput placeholder="Description" [(ngModel)]="text" name="text">
         </mat-form-field>
@@ -15,6 +15,7 @@
         </mat-form-field>
     </p>
     <p>
+        <button mat-raised-button color="secundary" type="button" (click)="onCancel()">Annuler</button>
         <button mat-raised-button color="primary" type="submit">Sauvegarder</button>
     </p>
 </form>

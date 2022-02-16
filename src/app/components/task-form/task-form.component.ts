@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -10,14 +10,26 @@ export class TaskFormComponent implements OnInit {
 
   text: string = "";
   date: string = "";
+  classForDescription: string = "full-width"
+
+  @Output() userActvityCompleted = new EventEmitter();
 
   constructor(private taskService: TasksService) { }
 
   ngOnInit(): void {
   }
 
+  onCancel() : void {
+    this.text = "";
+    this.date = "";
+    this.userActvityCompleted.emit();
+  }
+ 
+
   onSubmit(): void {
-    this.taskService.createNewTask(this.text, new Date(this.date));
+    if (this.text.length > 0) {
+      this.taskService.createNewTask(this.text, new Date(this.date));
+    }
     this.text = "";
     this.date = "";
   }
