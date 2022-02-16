@@ -57,4 +57,8 @@ export class ZonesComponent implements OnInit {
     }
   }
 
+  refresh() {
+    this.apiAlarmClientService.refresh();
+  }
+
 }

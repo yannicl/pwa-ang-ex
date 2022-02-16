@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlarmStatus } from '../models/AlarmStatus';
-import { Observable, timer, switchMap } from 'rxjs';
+import { Observable, timer, switchMap, Subject, merge } from 'rxjs';
 
 
 @Injectable({
@@ -11,9 +11,17 @@ export class ApiAlarmClientService {
 
   readonly apiUrl: string = 'https://us-central1-portegarage.cloudfunctions.net/alarm-status-mock';
 
-  constructor(private http: HttpClient) { }
+  private subject: Subject<number>;
+
+  constructor(private http: HttpClient) {
+    this.subject = new Subject();
+   }
 
   getAlarmStatus(): Observable<AlarmStatus> {
-    return timer(1, 10000).pipe(switchMap(() => this.http.get<AlarmStatus>(this.apiUrl)));
+    return merge(timer(1, 10000), this.subject.asObservable()).pipe(switchMap(() => this.http.get<AlarmStatus>(this.apiUrl)));
+  }
+
+  refresh(): void {
+    this.subject.next(0);
   }
 }
