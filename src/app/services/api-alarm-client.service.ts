@@ -15,7 +15,7 @@ export class ApiAlarmClientService {
 
   constructor(private http: HttpClient) {
     this.subject = new Subject();
-   }
+  }
 
   getAlarmStatus(): Observable<AlarmStatus> {
     return merge(timer(1, 10000), this.subject.asObservable()).pipe(switchMap(() => this.http.get<AlarmStatus>(this.apiUrl)));
