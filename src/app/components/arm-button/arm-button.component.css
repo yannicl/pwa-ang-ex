@@ -1,0 +1,11 @@
+.mat-fab{
+    right: 20px;
+    bottom: 20px;
+    position: fixed !important;
+ }
+ 
+ .mat-spinner{
+    right: 16px;
+    bottom: 16px;
+    position: fixed !important;
+ }

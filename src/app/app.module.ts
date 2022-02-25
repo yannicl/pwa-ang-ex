@@ -14,14 +14,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ZonesComponent } from './components/zones/zones.component';
+import { ArmButtonComponent } from './components/arm-button/arm-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ZonesComponent
+    ZonesComponent,
+    ArmButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { ZonesComponent } from './components/zones/zones.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
