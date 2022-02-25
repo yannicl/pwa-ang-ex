@@ -1,5 +1,10 @@
 <mat-toolbar color="primary">
-  <span>Alarme</span>
+  <span>{{title}}</span>
 </mat-toolbar>
-<app-zones></app-zones>
-<app-arm-button></app-arm-button>
+<nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabPanel">
+  <a mat-tab-link *ngFor="let tab of tabs"
+  routerLinkActive
+  #rla="routerLinkActive"
+  [active]="rla.isActive" [routerLink]="tab.link" > {{tab.label}} </a>
+</nav>
+ <mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>

@@ -10,23 +10,14 @@ import { Subscription, interval } from 'rxjs';
 })
 export class ZonesComponent implements OnInit {
 
-  isInitialProgressBarDisplayed: boolean = true;
   zones: Zone[] = [];
-  updateZonesSubscription!: Subscription;
 
   constructor(private apiAlarmClientService: ApiAlarmClientService) { }
 
   ngOnInit(): void {
-    this.updateZonesSubscription = this.apiAlarmClientService.getAlarmStatus().subscribe(alarmStatus => {
-      this.isInitialProgressBarDisplayed = false;
+    this.apiAlarmClientService.getAlarmStatus().subscribe(alarmStatus => {
       this.zones = alarmStatus.zones;
     })
-  }
-
-  ngOnDestroy() {
-    if (this.updateZonesSubscription != null) {
-      this.updateZonesSubscription.unsubscribe()
-    }
   }
 
   convZoneStatus2Icon(status: string) {

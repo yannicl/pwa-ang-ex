@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Mes tâches';
+  title = 'Alarme';
+
+  tabs : any = [{label: "Statut", link: "/status"}, {label: "Événements", link: "/events"}, {label: "Configuration", link: "/config"}]
 }
