@@ -4,5 +4,6 @@ export interface Zone {
 }
 
 export interface AlarmStatus {
-    zones: Zone[]
+    zones: Zone[],
+    history: String[]
 }

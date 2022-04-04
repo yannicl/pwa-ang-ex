@@ -26,10 +26,12 @@ export class ArmButtonComponent implements OnInit {
     if (this.isArmed) {
       this.apiAlarmClientService.disarm().subscribe(() => {
         this.isWaitingCmd = false;
+        this.isArmed = false;
       });
     } else {
       this.apiAlarmClientService.arm().subscribe(() => {
         this.isWaitingCmd = false;
+        this.isArmed = true;
       });
     }
   }

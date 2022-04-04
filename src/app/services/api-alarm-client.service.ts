@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlarmStatus } from '../models/AlarmStatus';
+import { ActionStatus } from '../models/ActionStatus';
 import { Observable, timer, switchMap, Subject, delay } from 'rxjs';
+import { ConfigurationService } from './configuration.service';
+import { HttpHeaders } from '@angular/common/http';
+
 
 
 @Injectable({
@@ -9,13 +13,23 @@ import { Observable, timer, switchMap, Subject, delay } from 'rxjs';
 })
 export class ApiAlarmClientService {
 
-  private readonly apiUrl: string = 'https://us-central1-portegarage.cloudfunctions.net/alarm-status-mock';
+  private readonly apiUrl: string = '';
 
   private _alarmStatus: Subject<AlarmStatus>;
 
-  constructor(private http: HttpClient) {
+  private httpOptions = {
+    headers: new HttpHeaders({
+    })
+  };
+
+
+  constructor(private http: HttpClient, private config: ConfigurationService) {
     this._alarmStatus = new Subject();
-    timer(1, 10000).pipe(switchMap(() => this.http.get<AlarmStatus>(this.apiUrl))).subscribe((alarmStatus) => {
+    this.httpOptions.headers = this.httpOptions.headers.set("apiKey", this.config.getAccessKey());
+    const action = {
+      action: "read"
+    }
+    timer(1, 10000).pipe(switchMap(() => this.http.post<AlarmStatus>(this.config.getBaseUrl() + this.apiUrl, action, this.httpOptions))).subscribe((alarmStatus) => {
       this._alarmStatus.next(alarmStatus);
     });
   }
@@ -25,10 +39,16 @@ export class ApiAlarmClientService {
   }
 
   arm() : Observable<any> {
-    return this.http.get<AlarmStatus>(this.apiUrl).pipe(delay(3000));
+    const action = {
+      action: "test-arm"
+    }
+    return this.http.post<ActionStatus>(this.config.getBaseUrl() + this.apiUrl, action, this.httpOptions).pipe(delay(500));
   }
 
   disarm() : Observable<any> {
-    return this.http.get<AlarmStatus>(this.apiUrl).pipe(delay(3000));
+    const action = {
+      action: "test-disarm"
+    }
+    return this.http.post<ActionStatus>(this.config.getBaseUrl() + this.apiUrl, action, this.httpOptions).pipe(delay(500));
   }
 }

@@ -1,1 +1,6 @@
-<p>configuration works!</p>
+<mat-list>
+    <mat-list-item *ngIf="config.getBaseUrl()"><mat-icon aria-hidden="false" color="primary">check_circle</mat-icon>Base Url</mat-list-item>
+    <mat-list-item *ngIf="config.getAccessKey()"><mat-icon aria-hidden="false" color="primary">check_circle</mat-icon>Access Key</mat-list-item>
+    <mat-list-item *ngIf="!config.getBaseUrl()"><mat-icon aria-hidden="false" color="warn">report_problem</mat-icon>Base Url</mat-list-item>
+    <mat-list-item *ngIf="!config.getAccessKey()"><mat-icon aria-hidden="false" color="warn">report_problem</mat-icon>Access Key</mat-list-item>
+</mat-list>

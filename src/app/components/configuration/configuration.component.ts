@@ -9,13 +9,20 @@ import { ConfigurationService } from 'src/app/services/configuration.service'
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private config: ConfigurationService) { }
+  constructor(private route: ActivatedRoute, public config: ConfigurationService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.config.saveBaseUrl(params['baseUrl']);
-      this.config.saveBaseUrl(params['accessKey']);
-    }); 
+      if (params['baseUrl']) {
+        this.config.saveBaseUrl(params['baseUrl']);
+      }
+      if (params['accessKey']) {
+        this.config.saveAccessKey(params['accessKey']);
+      }
+    });
+    ;
   }
+
+
 
 }
