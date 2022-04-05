@@ -40,14 +40,14 @@ export class ApiAlarmClientService {
 
   arm() : Observable<any> {
     const action = {
-      action: "test-arm"
+      action: "arm"
     }
     return this.http.post<ActionStatus>(this.config.getBaseUrl() + this.apiUrl, action, this.httpOptions).pipe(delay(500));
   }
 
   disarm() : Observable<any> {
     const action = {
-      action: "test-disarm"
+      action: "disarm"
     }
     return this.http.post<ActionStatus>(this.config.getBaseUrl() + this.apiUrl, action, this.httpOptions).pipe(delay(500));
   }

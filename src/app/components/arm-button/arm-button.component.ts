@@ -17,7 +17,7 @@ export class ArmButtonComponent implements OnInit {
   ngOnInit(): void {
     this.apiAlarmClientService.getAlarmStatus().subscribe(alarmStatus => {
       this.isWaitingInit = false;
-      this.isArmed = (alarmStatus.zones[0].status === "ARMED" || alarmStatus.zones[0].status === "TRIGGERED");
+      this.isArmed = (alarmStatus.lastAction === "arm");
     })
   }
 
